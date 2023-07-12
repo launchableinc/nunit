@@ -81,12 +81,12 @@ namespace Launchable.NUnit {
                 Walk(c);
             }
         }
-        
+
         internal void Process(Test t)
         {
             var n = t.FullName;
 
-            // if (debug)
+            if (debug)
             {
                 Console.WriteLine("Examining: "+n);
             }
