@@ -1,67 +1,21 @@
 namespace Launchable.NUnit.Test;
 
-public class BaseClass
-{
-  public virtual int Add(int a, int b)
-  {
-    return a + b;
-  }
-}
+/*
+This triggers a bug in NUnitXML.Logger. You get an incorrect XML report like this,
+where the method name ends up including more than the method name:
 
-public class SubAClass : BaseClass
-{
-  public override int Add(int a, int b)
-  {
-    return base.Add(a, b) + 1;
-  }
-}
+  <test-suite type="TestFixture" name="Test" fullname="Launchable.NUnit.Test" classname="Launchable.NUnit.Test" total="1" passed="1" failed="0" inconclusive="0" skipped="0" result="Passed" start-time="2023-07-28T 22:25:35Z" end-time="2023-07-28T 22:25:35Z" duration="1.6E-05">
+    <test-case name="TheTest" fullname="Launchable.NUnit.Test.Outer+Inner.TheTest" methodname="Outer+Inner.TheTest" classname="Test" result="Passed" start-time="2023-07-28T 22:25:35Z" end-time="2023-07-28T 22:25:35Z" duration="1.6E-05" asserts="0" seed="80945991" />
+  </test-suite>
 
-public class SubBClass : BaseClass
+*/
+public class Outer
 {
-  public override int Add(int a, int b)
+  public class Inner
   {
-    return base.Add(a, b) + 2;
-  }
-}
-
-[TestFixture]
-public class BaseClassTest
-{
-  public class SubAClassTest : BaseClassTest
-  {
-    [SetUp]
-    public void Setup()
+    [Test]
+    public void TheTest()
     {
-      // Use the test subclass in our test.
-      this.Instance = new SubAClass();
-    }
-
-    [TestCase(2, 2, 5)] // Because the SubAClass adds an extra 1.
-    [TestCase(3, 3, 7)]
-    public void AddTest(int a, int b, int expected)
-    {
-      int result = this.Instance.Add(a, b);
-      Assert.AreEqual(expected, result);
     }
   }
-
-  public class SubBClassTest : BaseClassTest
-  {
-    [SetUp]
-    public void Setup()
-    {
-      // Use the test subclass in our test.
-      this.Instance = new SubBClass();
-    }
-
-    [TestCase(2, 2, 6)] // Because the SubBClass adds an extra 2.
-    [TestCase(3, 3, 8)]
-    public void AddTest(int a, int b, int expected)
-    {
-      int result = this.Instance.Add(a, b);
-      Assert.AreEqual(expected, result);
-    }
-  }
-
-  protected BaseClass Instance { get; set; }
 }
