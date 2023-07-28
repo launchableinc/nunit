@@ -1,6 +1,7 @@
 namespace Launchable.NUnit.Test;
 
 /*
+When you run this as "dotnet test -l:nunit",
 This triggers a bug in NUnitXML.Logger. You get an incorrect XML report like this,
 where the method name ends up including more than the method name:
 
