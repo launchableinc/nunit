@@ -20,3 +20,19 @@ public class Outer
     }
   }
 }
+
+/*
+Similarly, tests parameterized with TestCase annotation gets methodname that contains parameters like this:
+
+  <test-case name="StrTest(&quot;dot.in.it&quot;)" fullname="Launchable.NUnit.Test.InlineParameterTests.StrTest(&quot;dot.in.it&quot;)" methodname="StrTest(&quot;dot.in.it&quot;)" classname="InlineParameterTests" />
+
+
+... which also creates a complexity in dealing with nested types
+*/
+public class InlineParameterTests
+{
+    [TestCase("dot.in.it")]
+    public void StrTest(string n)
+    {
+    }
+}
