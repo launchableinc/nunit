@@ -1,2 +1,4 @@
 bin
 obj
+Launchable.NUnit.Test/TestResults
+.vscode

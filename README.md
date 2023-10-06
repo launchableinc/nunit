@@ -3,7 +3,7 @@ See https://www.launchableinc.com/docs/features/predictive-test-selection/reques
 
 ## Development instruction
 * `dotnet build` to build
-* `dotnet test` to run unit tests
+* `dotnet test` to run unit tests. `dotnet test -l:nunit` to produce TestResults.xml
 
 ## Release instruction
 * Update the version number in `Launchable.NUnit/*.csproj`
