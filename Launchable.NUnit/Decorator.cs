@@ -100,7 +100,8 @@ namespace Launchable.NUnit {
                 t.RunState = RunState.Skipped;
             }
             if (n=="Launchable.NUnit.Test.OneLineIntegrationTest.Test2"
-            ||  n=="Launchable.NUnit.Test.ParameterizedTests.DivideTest(2)")
+            ||  n=="Launchable.NUnit.Test.ParameterizedTests.DivideTest(2)"
+            ||  n=="Launchable.NUnit.Test.SetupAndTeardownTest.Foo")
             {// unit test probe
                 t.RunState = RunState.Skipped;
             }
